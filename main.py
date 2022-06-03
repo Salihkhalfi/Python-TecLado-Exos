@@ -250,3 +250,11 @@ print(
 
 print(
     f"l'id en mémoire de friends est : {id(friends)} de start_with_s : {id(start_with_s)}")
+
+print()
+
+####################### LES DICTIONNAIRES #################################################################
+
+print("################### LES DICTIONNAIRES ######################################")
+
+print()
