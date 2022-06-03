@@ -1,7 +1,5 @@
 # Telcast-Exos
 
-# Python-intro
-
 📊 Introduction à Python par des exemples
 🌎 Notions abordées:
       ※ les variables, les boucles
