@@ -1,8 +1,5 @@
-# ############ Demander l'âge    #####################
-# ####################################################
 
-from operator import ne
-
+print("##################### INPUT() #########################################")
 
 user_age = int(input("Entrer votre âge : "))
 months = user_age * 12
@@ -10,7 +7,12 @@ days = user_age * 365
 
 print(f"Votre âge comporte {months} mois, ou {days} jours !!!")
 
-# ############# Les Listes #################################################################
+print()
+
+# ############# LES LISTES TUPLES  SETS #################################################################
+
+print("##################### LES TUPLE, LISTE, SET #########################################")
+
 list_names = ["Salah", "Bob", "Amar", "Kadour"]
 # on ne peut pas modifier les elts dans un tuple
 tuple_names = ("Salah", "Bob", "Amar", "Kadour")
@@ -55,6 +57,9 @@ print(f"L'union des 2 sets : {union_friends}")
 intersec_friends = friends.intersection(abroad)
 print(f"L'intersection des 2 sets : {intersec_friends}")
 
+print()
+
+print("##################### EXERCICE TUPLE, LISTE, SET #########################################")
 
 ######################  EXERCICE  #################################
 # This coding exercise requires you to complete three steps:
@@ -91,3 +96,129 @@ print(f"Le nouveau contenu de set2 est de : {new_set2}")
 # On va afficher le new_set2 avec des elts triés
 # l'affichage nous donne des elts non triés
 print(f"Le nouveau contenu de set2 trié est de : {sorted(new_set2)}")
+
+print()
+
+# ############# Les booléens ############################################################
+print("##################### lES BOOLEANS #########################################")
+
+
+print(5 == 5)  # True
+print(5 > 5)   # False
+print(5 != 5)  # False
+
+print(f"le set friends est égal abroad ? : {friends == abroad}")
+# ====> False
+# le '==' compare les elts des deux sets
+
+# le 'is' compare si c'est la m^me valeur en mémoire,
+# et ne compare pas les elts des sets ou des listes ou des tuples
+
+# avec "is"====> False
+print(f"le set friends est égal abroad avec 'is' ? : {friends is abroad}")
+
+print()
+
+################# LES STATEMENTS ############################################################
+print("##################### lES STATEMENTS #########################################")
+
+# Mettre en  minuscule
+day_of_week = input("quel jour sommes-nous cette semaine ? : ").lower()
+
+if day_of_week == "vendredi":
+    print(f"nous sommes le Vendredi")
+else:
+    print(f"Erreur !, nous sommes pas le {day_of_week}")
+
+print("Good Bye !!!!!!!!!!!!")
+
+# ################ LE IN ###############################################################
+
+last_names = ["ralf", "engy", "boubakeur", "salah"]
+
+personne = ""
+while personne == "":
+
+    personne = input("Qui se trouve dans notre réseau d'amitié ? : ").lower()
+    if personne == "":
+        continue  # On continue dans la boucle pour éviter d'afficher
+        # Dommage " " n'est pas dans notre réseau snif snif
+    elif personne in last_names:
+        print(f"Super {personne} est dans notre réseau")
+    else:
+        print(f"Dommage {personne} n'est pas dans notre réseau snif snif ...")
+print()
+
+################# LES  BOUCLES #############################################################
+print("###################### LES BOUCLES ###########################################################")
+
+friends_list = ["Ralf", "engy", "boubakeur", "salah"]
+
+for friend in friends_list:
+    print(f"{friend} est mon ami !")
+
+grades = [35, 67, 98, 100]
+total = 0  # la somme des elts de la liste grades
+
+for grade in grades:
+    total += grade
+
+print(f"la somme des {len(grades)} elts de la liste grades = {total}")
+
+##################### AVEC SUM #################################################################################################
+
+total = sum(grades)
+
+amount = total / len(grades)
+
+print(f"le montant des {len(grades)} elts de la liste grades = {amount}")
+
+print()
+
+################################# EXERCICE ########################################
+# This coding exercise has two steps.
+#
+# Modify the code so that the evens list contains only the even numbers of the
+# numbers list. You do not need to print anything.
+# For part 2, add a clause to the if statement such that if the user's input is "q",
+# your program prints "Quit".
+# Remember that for these coding exercises, Python will care about uppercase and
+# lowercase letters, so make sure to use the right ones!
+#
+# -- Part 1 --
+# numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+# evens = []
+# for number in numbers:
+#     evens.append(number)
+# -- Part 2, must be completed before submitting! --
+# user_input = input("Enter your choice: ")
+# if user_input == "a":
+#     print("Add")
+########################### EXERCICE ############################################
+print("#################### EXERCICE #############################################")
+
+# -- Part 1 --
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+evens = []  # La liste des nobres pairs
+odd = []    # La liste des nombres impaires
+
+for number in numbers:
+    if number % 2 == 0:  # Trouver les nombres pairs
+        evens.append(number)  # Les insérer dans la liste evens
+    elif number % 2 != 0:  # nombre impairs
+        odd.append(number)  # On insère le nombre dans la liste odd impaire
+
+print(f"La liste des nombres pairs est : {evens}")
+print(f"La liste des nombres impairs est : {odd}")
+
+# -- Part 2, must be completed before submitting! --
+user_input = input("Enter your choice: ").lower()
+if user_input == "a":
+    print("Add")
+elif user_input == "q":
+    print("Quit")
+
+else:
+    print("mauvaise réponse !!!")
