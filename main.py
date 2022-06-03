@@ -214,11 +214,39 @@ print(f"La liste des nombres pairs est : {evens}")
 print(f"La liste des nombres impairs est : {odd}")
 
 # -- Part 2, must be completed before submitting! --
-user_input = input("Enter your choice: ").lower()
+user_input = input("Entrez votre choix: a (Add), q (Quit) : ").lower()
 if user_input == "a":
-    print("Add")
+    print("Ajouter")
 elif user_input == "q":
     print("Quit")
 
 else:
     print("mauvaise réponse !!!")
+
+print()
+
+##################### LIST  COMPREHENSION #################################################################################################
+
+print("################## LIST COMPREHENSION ####################################")
+
+numbers = [1, 5, 77, 99, 45]
+doubled_list = []  # On insère chaque elt  mutiplié par 2
+
+doubled_list = [item * 2 for item in numbers]
+
+print(f"doubled_list en liste comprehension est égale à : {doubled_list}")
+
+friends = ["Rolf", "Sam", "Samantha", "Salah", "Tamara", "Kaki"]
+
+# On crée une liste des elts qui commencent par "s"
+start_with_s = [friend for friend in friends if friend.startswith("S")]
+
+print(
+    f"la liste comprehension des elts qui commencent par 'S' est : {start_with_s}", end="\n" * 2)
+# end = "\n" * 2  ===> Saut de 2 lignes
+
+#################### LES IDs DES LISTE EN MEMOIRE ##############################
+# l'id est l'adresse de la liste en mémoire
+
+print(
+    f"l'id en mémoire de friends est : {id(friends)} de start_with_s : {id(start_with_s)}")
