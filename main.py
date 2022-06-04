@@ -241,15 +241,13 @@ friends = ["Rolf", "Sam", "Samantha", "Salah", "Tamara", "Kaki"]
 # On crée une liste des elts qui commencent par "s"
 start_with_s = [friend for friend in friends if friend.startswith("S")]
 
-print(
-    f"la liste comprehension des elts qui commencent par 'S' est : {start_with_s}", end="\n" * 2)
+print(f"la liste comprehension des elts qui commencent par 'S' est : {start_with_s}", end="\n" * 2)
 # end = "\n" * 2  ===> Saut de 2 lignes
 
 #################### LES IDs DES LISTE EN MEMOIRE ##############################
 # l'id est l'adresse de la liste en mémoire
 
-print(
-    f"l'id en mémoire de friends est : {id(friends)} de start_with_s : {id(start_with_s)}")
+print(f"l'id en mémoire de friends est : {id(friends)} de start_with_s : {id(start_with_s)}")
 
 print()
 
