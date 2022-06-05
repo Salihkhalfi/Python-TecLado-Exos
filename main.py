@@ -258,3 +258,86 @@ print()
 print("################### LES DICTIONNAIRES ######################################")
 
 print()
+
+friend_ages = {"Salah": 56, "Ralf": 25, "Sam": 23, "Tamara": 21, "Kaki": 12}
+friend_ages["Sara"] = 20
+
+print(f"le nouveau dictionnaire devient : {friend_ages}")
+
+print("l'âge de Tamara est : ", friend_ages["Tamara"])
+
+# ################Imprimer les Clés et les valeurs ##########################
+
+print(f"Les clés de friend_ages sont : {friend_ages.keys()}")
+print(f"Les valeurs de friend_ages sont : {friend_ages.values()}")
+
+##################### Impression en liste ###################################
+
+print("##################### Impression en liste ###################################")
+
+print(f"Les clés de friend_ages en liste : {list(friend_ages.keys())})")
+print(f"Les valeurs de friend_ages en liste: {list(friend_ages.values())}")
+
+##################### Impression des items () ###################################
+
+print("##################### Impression des items () ###############################")
+
+print(f"impression des items de friend_ages : {friend_ages.items()}")
+
+print(f"impression des items de friend en liste : {list(friend_ages.items())}")
+
+##################### LISTE DES DICTIONNAIRES #######################################
+
+print("##################### LISTE DES DICTIONNAIRES ################################")
+
+friends = [
+
+    {"nom": "Salah", "age": 56},
+    {"nom": "Amar", "age": 38},
+    {"nom": "Sara", "age": 20},
+    {"nom": "Eric", "age": 35}
+
+]
+
+################### imprimer "Sara" ###################################################################
+print("imprimer le 2ème elt de la liste dict : ",
+      friends[2]["nom"], ", agé(e) de : ", friends[2]["age"], " ans .")
+
+################### afficher avec items avec une boucle ###############################################
+
+students = {"Salah": 56,
+            "Amar": 38,
+            "Sara": 20,
+            "Eric": 35
+            }
+
+for nom, age in students.items():
+    print(f"les elts du Dictionary avec items : {nom} agé(e) de : {age} ans.")
+
+################ On peut imprimer aussi sous forme d'une liste de Tuple #############
+
+print(f"students devient une liste de tuples : {list(students.items())}")
+
+########################  Ont peut aussi l'écrire ligne par ligne ############################
+
+for item in students.items():
+    print(f"Etudiant : {item} ans.")
+
+# ############# Est qu'une personne est avec les etudiants ? #########################################
+
+print("############# Est qu'une personne est avec les etudiants ? ##################################")
+
+personne = input("Qu'elle personne cherche tu ? : ")
+
+if personne.capitalize() in students:
+    print(f"Youpiiii , {personne} est dans le près des étudiants")
+else:
+    print(f"Mince !!! , {personne} n'est pas dans le près des étudiants")
+
+#################### Calculer la moyenne d'age des etudiants #############################
+
+moyenne_age = sum(students.values()) // len(students)
+# On peut aussi écrire :
+# moyenne_age = round(sum(students.values()) / len(students))
+
+print(f"La moyenne d'âge des étudiants est de : {moyenne_age} ans.")
