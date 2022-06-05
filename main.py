@@ -362,3 +362,9 @@ print(f"la tête devient : {tete}")
 print(f"la queue devient : {queue}")
 
 print()
+
+################ LES FONCTIONS ####################################################
+
+print("################ LES FONCTIONS ######################################################")
+
+print()
