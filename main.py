@@ -241,13 +241,15 @@ friends = ["Rolf", "Sam", "Samantha", "Salah", "Tamara", "Kaki"]
 # On crée une liste des elts qui commencent par "s"
 start_with_s = [friend for friend in friends if friend.startswith("S")]
 
-print(f"la liste comprehension des elts qui commencent par 'S' est : {start_with_s}", end="\n" * 2)
+print(
+    f"la liste comprehension des elts qui commencent par 'S' est : {start_with_s}", end="\n" * 2)
 # end = "\n" * 2  ===> Saut de 2 lignes
 
 #################### LES IDs DES LISTE EN MEMOIRE ##############################
 # l'id est l'adresse de la liste en mémoire
 
-print(f"l'id en mémoire de friends est : {id(friends)} de start_with_s : {id(start_with_s)}")
+print(
+    f"l'id en mémoire de friends est : {id(friends)} de start_with_s : {id(start_with_s)}")
 
 print()
 
@@ -339,3 +341,24 @@ moyenne_age = sum(students.values()) // len(students)
 # moyenne_age = round(sum(students.values()) / len(students))
 
 print(f"La moyenne d'âge des étudiants est de : {moyenne_age} ans.")
+
+print()
+
+#################  LA DESTRUCTURATION  ##############################################
+
+print("#################  LA DESTRUCTURATION  ######################################")
+
+print()
+
+tete, *queue = [1, 4, 5, 7, 100, 200, 300, 400, 500, 600, 700, 800]
+
+print(f"la tête contient : {tete}, la queue contient : {queue}")
+
+######### Aussi on peut écrire  ####################################################
+
+*tete, queue = [1, 4, 5, 7, 100, 200, 300, 400, 500, 600, 700, 800]
+
+print(f"la tête devient : {tete}")
+print(f"la queue devient : {queue}")
+
+print()
