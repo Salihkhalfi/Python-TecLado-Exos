@@ -388,10 +388,6 @@ print()
 #     age_seconds = user_age * 60 * 60 * 24 * 365
 #     return age_seconds
 
-
-# print(f" votre âge en seconds est de : {user_age_in_seconds()}")
-
-
 def say_hello(name, surname):
 
     try:
@@ -434,10 +430,13 @@ print(add(5, 7))
 def double(x):
     return x * 2
 
-
 sequence = [1, 2, 5, 10]
 doubled_sequence = [double(x) for x in sequence]
 
 print(doubled_sequence)
 
 doubled_sequence = map(double, sequence)
+
+
+
+
