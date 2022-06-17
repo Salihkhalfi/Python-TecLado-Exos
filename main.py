@@ -388,6 +388,10 @@ print()
 #     age_seconds = user_age * 60 * 60 * 24 * 365
 #     return age_seconds
 
+
+# print(f" votre âge en seconds est de : {user_age_in_seconds()}")
+
+
 def say_hello(name, surname):
 
     try:
@@ -430,6 +434,7 @@ print(add(5, 7))
 def double(x):
     return x * 2
 
+
 sequence = [1, 2, 5, 10]
 doubled_sequence = [double(x) for x in sequence]
 
@@ -437,6 +442,49 @@ print(doubled_sequence)
 
 doubled_sequence = map(double, sequence)
 
+################## EXERCICE ##########################################################
+# Create a variable called student, with a dictionary.
+# The dictionary must contain three keys: 'name', 'school', and 'grades'.
+# The values for each must be 'Jose', 'Computing', and a tuple with the values 66, 77, and 88.
+student = {"name": "José", "school": "Computing", "grades": (66, 77, 88)}
+
+# Assume the argument, data, is a dictionary.
+# Modify the grades variable so it accesses the 'grades' key of the data dictionary.
 
 
+def average_grade(data):
+    grades = data["grades"]
+    return sum(grades) / len(grades)
 
+
+print(f"la moyenne des grades est : {average_grade(student)}")
+
+# Implement the function below
+# Given a list of students (a list of dictionaries), calculate the average grade received on an exam, for the entire class
+# You must add all the grades of all the students together
+# You must also count how many grades there are in total in the entire list
+
+list_students = [{"name": "José", "school": "Computing", "grades": (66, 77, 88)},
+                 {"name": "Kamel", "school": "Physics", "grades": (35, 84)},
+                 {"name": "Ammar", "school": "Medecine", "grades": (95, 69, 73, 27)}]
+
+# #### Calcul la moyenne de chaque etudiant et l'additionner avec les autres
+# #### Pour trouver la moyenne de tous les étudiants
+
+
+def average_grade_all_students(list_student):
+    total = 0
+    count = 0
+
+    for student in list_students:
+
+        # Implement here
+        total += average_grade(student)
+        count += len(student["grades"])
+
+    return total / count, count
+
+
+moyenne, nb_grades = average_grade_all_students(list_students)
+print(
+    f"La moyenne est de tous les élèves est : {moyenne} le nombre des grades est: {nb_grades} ")
