@@ -482,9 +482,49 @@ def average_grade_all_students(list_student):
         total += average_grade(student)
         count += len(student["grades"])
 
-    return total / count, count
+    return total / count, count  # La fonction renvoit 2 valeurs
 
 
+# Les 2 valeurs renvoyées par la fonction seront sauvegardées
+# dans moyenne et nb_grades
 moyenne, nb_grades = average_grade_all_students(list_students)
 print(
     f"La moyenne est de tous les élèves est : {moyenne} le nombre des grades est: {nb_grades} ")
+
+################ LA POO ##############################################################################
+
+
+class Student:
+    def __init__(self):  # Constructeur
+        self.name = "Salih"
+        self.age = 56
+        self.adress = "Rue des Caniveaux"
+        self.grades = (45, 75, 89, 62)
+
+    def average_grades(self):
+
+        return sum(student.grades) / len(student.grades)
+
+
+student = Student()  # On instantie La classe Student
+print(
+    f"le nom de student est {student.name} il est agée de : {student.age} ans.")
+print(f"les grades de {student.name} sont : {(student.grades)}")
+print(
+    f"la moyenne des grades de {student.name} est de : {student.average_grades()}")
+
+# ###### ######### AUTRE FACON DE DECLARER DES OBJETS ###########################################################
+
+
+class Employe:
+    def __init__(self, name, age, salary):
+        self.name = name
+        self.age = age
+        self.salary = salary
+
+
+employe = Employe("Rachid", 57, 1200)
+employe1 = Employe("Eric", 26, 2000)
+
+print(f"le salarié {employe.name} touche {employe.salary}€")
+print(f"le salarié {employe1.name} touche {employe1.salary}€")
