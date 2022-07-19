@@ -1,4 +1,4 @@
-# Telcast-Exos
+# TecLado-Exos
 
 * 📊 Introduction à Python par des exemples
 * 🌎 Notions abordées:
