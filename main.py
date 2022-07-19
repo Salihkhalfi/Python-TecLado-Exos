@@ -131,6 +131,11 @@
 #     print(f"Erreur !, nous sommes pas le {day_of_week}")
 
 # print("Good Bye !!!!!!!!!!!!")
+# print("Good Bye !!!!!!!!!!!!")
+# print("Good Bye !!!!!!!!!!!!")
+# print("Good Bye !!!!!!!!!!!!")
+# print("Good Bye !!!!!!!!!!!!")
+# print("Good Bye !!!!!!!!!!!!")
 
 # # ################ LE IN ###############################################################
 
@@ -528,3 +533,189 @@ employe1 = Employe("Eric", 26, 2000)
 
 print(f"le salarié {employe.name} touche {employe.salary}€")
 print(f"le salarié {employe1.name} touche {employe1.salary}€")
+
+
+class Person:
+    def __init__(self, name, age , grades):
+        self.name = name
+        self.age = age
+        self.grades = grades
+
+    def __str__(self):
+        return f"Je m'appelle {self.name}, j'ai {self.age} ans, mes grades sont: {self.grades}, total des grades : {self.total_grades()}, moyenne : {self.average_grades()}"
+
+    def total_grades(self):
+        return sum(self.grades)
+
+    def average_grades(self):  # La moyenne des gardes
+        return self.total_grades() / len(self.grades)
+
+
+salih = Person("Salih" , 57 , (16,25,30,67))
+achouyr = Person("Achouyr" , 43 , (12,132,90))
+sara = Person("Sara" , 32 , (16,2,37,77))
+
+print(salih)
+print(achouyr)
+print(sara)
+
+# **************************** EXERCICE ****************************************************************
+# This coding exercise requires you to complete an implementation of three methods of a class:
+
+# The __init__  method, which should take an argument, name . It should initialise self.name  to be the argument, 
+# and self.items  to be an empty list.
+# The add_item  method, which should append a dictionary representing an item to the store's items  property. 
+# The dictionary should have keys name  and price .
+# The stock_price  method, which should add up each item price inside self.items  to come up with a total, and return that.
+# Good luck!
+
+class Store:
+
+    def __init__(self, name):
+        # You'll need 'name' as an argument to this method.
+        # Then, initialise 'self.name' to be the argument, and 'self.items' to be an empty list.
+        self.name = name
+        self.items = []
+
+    def add_item(self, name, price):
+        # Create a dictionary with keys name and price, and append that to self.items.
+        item = {
+            'name': name,
+            'price' : price
+        }
+        self.items.append(item)
+
+    def stock_price(self):
+        # Add together all item prices in self.items and return the total.
+        total = 0
+
+        # for item in self.items:
+        #     total += item['price']
+        # return total
+        
+        total = sum([item['price'] for item in self.items])
+        return total
+
+    def __str__(self):
+
+        return f"la somme des prix de tous les prices : {self.stock_price()}"
+
+livre = Store("livre")
+radio = Store("radio")
+tv = Store("tv")
+
+livre.add_item("livre" , 40)
+radio.add_item("radio" , 250)
+tv.add_item("tv" , 500)
+
+################### HERITAGE ##################################################
+
+class Device:
+
+    def __init__(self , name, connected_by):
+        self.name = name
+        self.connected_by = connected_by
+        self.connected = True
+
+    def __str__(self):
+        return f"Device {self.name!r} ({self.connected})" 
+
+    def disconnect(self):
+        self.connected = False
+        print("Disconnecting .....")
+
+printer = Device("printer" , "USB")
+
+print(printer)
+printer.disconnect()
+
+class Printer(Device):  # On crée une classe Printer qui hérite de Device
+
+    def __init__(self , name, connected_by , capacity):
+        super().__init__(name, connected_by)
+        self.capacity = capacity
+        self.remaining_pages = capacity
+    
+    def __str__(self):
+        return f"{super().__str__()} Connected by {self.connected_by!r} ({self.remaining_pages} remaining pages...)"
+
+    def print(self, pages):
+        if not self.connected:
+            print("votre imprimante n'est pas connectée")
+            return
+        self.remaining_pages -= pages
+      
+printer = Printer("PrinterHP" , "USB" , 500)
+printer.print(120)
+
+print(printer)
+
+printer.disconnect()
+
+printer.print(21) # affichage de "votre imprimante n'est  pas connectée" et sort avec return
+
+# #################### CLASSE COMPOSITION ####################################################
+
+class BookShelf:
+    def __init__(self , quantity):
+        
+        self.quantity = quantity
+
+    def __str__(self):
+        return f"quantity : {self.quantity} Books."
+
+shelf = BookShelf(50)
+
+print(shelf)
+
+class Book(BookShelf):
+
+    def __init__(self , name , description , quantity):
+        super(Book, self).__init__(quantity)
+        self.name = name
+        self.description = description
+
+    def __str__(self):
+        return f"BookName : {self.name} Book description : {self.description!r} Book quantity : {self.quantity}"
+
+book = Book("C#" , "Head First C#" , 20)
+print(book)
+
+# ############## l'appel de book ne marche pas bien parceque il va nous imprimer 
+# la capacité de BookShelf(étagère qui contient les livres), mais n'affiche pa le 
+# nombre de livres dans le stock ==> "C#, Head First, 20 Books"
+#################################################################################
+# On utilise alors une classe composition comme suit :                          #
+
+class BookShelf:
+    def __init__(self , *books):  # On remplace quantity par *books == BookShelf contient plusieurs livres (étagère)
+        
+        self.books = books
+
+    def __str__(self):
+        return f"BookShielf with : {len(self.books)} Books."  # BookShielf contient plusieurs livres (étagère)
+
+#  shelf = BookShelf(50) ==> On a pas besoin d'instancier
+
+#  print(shelf) pas besoin d'afficher
+
+class Book:  # On a pas besoin d'hériter de la classe BookShelf   
+
+    def __init__(self , name , description):  # On a a pas besoin de Quantity on la supprime
+        # super(Book, self).__init__(quantity) ===> On supprime super() avec quantity 
+        self.name = name
+        self.description = description
+
+    def __str__(self):
+        return f"BookName : {self.name} Book description : {self.description!r}"
+
+book = Book("C#" , "Head First C#")
+book2 = Book("Java" , "introduction to Java")
+print(book)
+print(book2)
+
+shelf = BookShelf(book , book2)  # shelf (étagère) contient 2 livres
+print(shelf)  # affiche: "BookShielf with : 2 Books." ====> {len(self.books)}
+
+
+
