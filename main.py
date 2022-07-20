@@ -111,7 +111,7 @@
 # # ====> False
 # # le '==' compare les elts des deux sets
 
-# # le 'is' compare si c'est la m^me valeur en mémoire,
+# # le 'is' compare si c'est la même valeur en mémoire,
 # # et ne compare pas les elts des sets ou des listes ou des tuples
 
 # # avec "is"====> False
@@ -206,7 +206,7 @@
 # # -- Part 1 --
 # numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-# evens = []  # La liste des nobres pairs
+# evens = []  # La liste des nombres pairs
 # odd = []    # La liste des nombres impaires
 
 # for number in numbers:
@@ -717,5 +717,20 @@ print(book2)
 shelf = BookShelf(book , book2)  # shelf (étagère) contient 2 livres
 print(shelf)  # affiche: "BookShielf with : 2 Books." ====> {len(self.books)}
 
+# ####################### TYPE HINTING ################################################################
+from typing import List 
 
+# Sans Type Hinting
+def list_avg(sequence):
+    return sum(sequence) / len(sequence)
 
+result = list_avg([1 , 2 , 3])
+print(f"la moyenne de cette liste est : {result}")
+
+# Avec Type Hinting
+def list_avg(sequence:List) -> float:
+
+    return sum(sequence) / len(sequence)
+    
+result = list_avg([1 , 2, 3])
+print(f"la moyenne de cette liste est : {result}")
