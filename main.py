@@ -732,5 +732,5 @@ def list_avg(sequence:List) -> float:
 
     return sum(sequence) / len(sequence)
     
-result = list_avg([1 , 2, 3])
+result = list_avg(123)
 print(f"la moyenne de cette liste est : {result}")
