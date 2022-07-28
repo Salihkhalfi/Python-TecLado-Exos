@@ -742,12 +742,60 @@ from mymodule import divide
 import sys
 import mymodule
 
-print(sys.modules)
-print(sys.path)  # affiche:
-                 # C:\Users\s_kha\OneDrive\EXERCICES TECLADO PYTHON\TecLadot-Exos>
+# print(sys.modules)
+# print(sys.path)  # affiche:
+                   # C:\Users\s_kha\OneDrive\EXERCICES TECLADO PYTHON\TecLadot-Exos>
 
 # On importe la fonction qui se trouve dans le module mymodule.py
 print(f"la division est égale: {divide(12 , 6)}")
 print(__name__)
+
+################### FIRST CLASS FUNCTION #############################################################
+
+def divide(dividend , divisor): 
+    if divisor == 0:
+        raise ZeroDivisionError("Divisor cannot be a 0 !!")
+    return dividend / divisor
+
+def calculate(*values , operator):
+    return operator(*values)
+
+def addition(number1 , number2):
+    return number1 + number2
+
+# Appel de la fonction calculate dans une variable result
+result = calculate(20 , 4 , operator = divide)
+print(f"result division = {result:.2f}")  # affiche : 5.00 deux virgules à la fin 
+
+# Appel de la fonction addition
+result = calculate(20 , 4 , operator = addition)
+print(f"result addition = {result:.2f}") # affiche : 24.0
+
+# ######## AUTRE EXEMPLE DE FIRST CLASS FUNCTION #######################
+
+def search(sequence , expected , finder):
+    for elem in sequence:
+        if finder(elem) == expected:
+            return elem
+    raise RuntimeError(f"Could not find an element with {expected}")
+
+friends = [
+    {"name": "John", "age" : 16},
+    {"name": "Salih", "age" : 56},
+    {"name": "Anne sophie" , "age" : 24},   
+]
+
+def get_friend_name(friend):
+    return friend["name"]
+
+# On affiche l'element dans friends sans "Bob smith" qui n'existe pas
+# On aura : RuntimeError: Could not find an element with Bob smith
+# et le programme sort
+# print(search(friends, "Bob smith" , get_friend_name))
+
+# Si l'elm existe dans friends on aura :
+# {'name': 'Salih', 'age': 56}
+print(search(friends, "Salih" , get_friend_name))
+
 
 
