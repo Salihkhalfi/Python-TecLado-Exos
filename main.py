@@ -728,9 +728,26 @@ result = list_avg([1 , 2 , 3])
 print(f"la moyenne de cette liste est : {result}")
 
 # Avec Type Hinting
+from typing import List
 def list_avg(sequence:List) -> float:
 
     return sum(sequence) / len(sequence)
     
-result = list_avg([1, 2, 3])
+result = list_avg((1,2,3))
 print(f"la moyenne de cette liste est : {result}")
+
+ ################## IMPORTING IN PYTHON ###################################################
+
+from mymodule import divide
+import sys
+import mymodule
+
+print(sys.modules)
+print(sys.path)  # affiche:
+                 # C:\Users\s_kha\OneDrive\EXERCICES TECLADO PYTHON\TecLadot-Exos>
+
+# On importe la fonction qui se trouve dans le module mymodule.py
+print(f"la division est égale: {divide(12 , 6)}")
+print(__name__)
+
+
