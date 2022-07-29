@@ -370,6 +370,10 @@
 
 ################ LES FONCTIONS ####################################################
 
+import mymodule
+import sys
+from mymodule import divide
+from typing import List
 from audioop import add
 
 
@@ -536,7 +540,7 @@ print(f"le salarié {employe1.name} touche {employe1.salary}€")
 
 
 class Person:
-    def __init__(self, name, age , grades):
+    def __init__(self, name, age, grades):
         self.name = name
         self.age = age
         self.grades = grades
@@ -551,9 +555,9 @@ class Person:
         return self.total_grades() / len(self.grades)
 
 
-salih = Person("Salih" , 57 , (16,25,30,67))
-achouyr = Person("Achouyr" , 43 , (12,132,90))
-sara = Person("Sara" , 32 , (16,2,37,77))
+salih = Person("Salih", 57, (16, 25, 30, 67))
+achouyr = Person("Achouyr", 43, (12, 132, 90))
+sara = Person("Sara", 32, (16, 2, 37, 77))
 
 print(salih)
 print(achouyr)
@@ -562,12 +566,13 @@ print(sara)
 # **************************** EXERCICE ****************************************************************
 # This coding exercise requires you to complete an implementation of three methods of a class:
 
-# The __init__  method, which should take an argument, name . It should initialise self.name  to be the argument, 
+# The __init__  method, which should take an argument, name . It should initialise self.name  to be the argument,
 # and self.items  to be an empty list.
-# The add_item  method, which should append a dictionary representing an item to the store's items  property. 
+# The add_item  method, which should append a dictionary representing an item to the store's items  property.
 # The dictionary should have keys name  and price .
 # The stock_price  method, which should add up each item price inside self.items  to come up with a total, and return that.
 # Good luck!
+
 
 class Store:
 
@@ -581,7 +586,7 @@ class Store:
         # Create a dictionary with keys name and price, and append that to self.items.
         item = {
             'name': name,
-            'price' : price
+            'price': price
         }
         self.items.append(item)
 
@@ -592,7 +597,7 @@ class Store:
         # for item in self.items:
         #     total += item['price']
         # return total
-        
+
         total = sum([item['price'] for item in self.items])
         return total
 
@@ -600,42 +605,46 @@ class Store:
 
         return f"la somme des prix de tous les prices : {self.stock_price()}"
 
+
 livre = Store("livre")
 radio = Store("radio")
 tv = Store("tv")
 
-livre.add_item("livre" , 40)
-radio.add_item("radio" , 250)
-tv.add_item("tv" , 500)
+livre.add_item("livre", 40)
+radio.add_item("radio", 250)
+tv.add_item("tv", 500)
 
 ################### HERITAGE ##################################################
 
+
 class Device:
 
-    def __init__(self , name, connected_by):
+    def __init__(self, name, connected_by):
         self.name = name
         self.connected_by = connected_by
         self.connected = True
 
     def __str__(self):
-        return f"Device {self.name!r} ({self.connected})" 
+        return f"Device {self.name!r} ({self.connected})"
 
     def disconnect(self):
         self.connected = False
         print("Disconnecting .....")
 
-printer = Device("printer" , "USB")
+
+printer = Device("printer", "USB")
 
 print(printer)
 printer.disconnect()
 
+
 class Printer(Device):  # On crée une classe Printer qui hérite de Device
 
-    def __init__(self , name, connected_by , capacity):
+    def __init__(self, name, connected_by, capacity):
         super().__init__(name, connected_by)
         self.capacity = capacity
         self.remaining_pages = capacity
-    
+
     def __str__(self):
         return f"{super().__str__()} Connected by {self.connected_by!r} ({self.remaining_pages} remaining pages...)"
 
@@ -644,33 +653,38 @@ class Printer(Device):  # On crée une classe Printer qui hérite de Device
             print("votre imprimante n'est pas connectée")
             return
         self.remaining_pages -= pages
-      
-printer = Printer("PrinterHP" , "USB" , 500)
+
+
+printer = Printer("PrinterHP", "USB", 500)
 printer.print(120)
 
 print(printer)
 
 printer.disconnect()
 
-printer.print(21) # affichage de "votre imprimante n'est  pas connectée" et sort avec return
+# affichage de "votre imprimante n'est  pas connectée" et sort avec return
+printer.print(21)
 
 # #################### CLASSE COMPOSITION ####################################################
 
+
 class BookShelf:
-    def __init__(self , quantity):
-        
+    def __init__(self, quantity):
+
         self.quantity = quantity
 
     def __str__(self):
         return f"quantity : {self.quantity} Books."
 
+
 shelf = BookShelf(50)
 
 print(shelf)
 
+
 class Book(BookShelf):
 
-    def __init__(self , name , description , quantity):
+    def __init__(self, name, description, quantity):
         super(Book, self).__init__(quantity)
         self.name = name
         self.description = description
@@ -678,73 +692,80 @@ class Book(BookShelf):
     def __str__(self):
         return f"BookName : {self.name} Book description : {self.description!r} Book quantity : {self.quantity}"
 
-book = Book("C#" , "Head First C#" , 20)
+
+book = Book("C#", "Head First C#", 20)
 print(book)
 
-# ############## l'appel de book ne marche pas bien parceque il va nous imprimer 
-# la capacité de BookShelf(étagère qui contient les livres), mais n'affiche pa le 
+# ############## l'appel de book ne marche pas bien parceque il va nous imprimer
+# la capacité de BookShelf(étagère qui contient les livres), mais n'affiche pa le
 # nombre de livres dans le stock ==> "C#, Head First, 20 Books"
 #################################################################################
 # On utilise alors une classe composition comme suit :                          #
 
+
 class BookShelf:
-    def __init__(self , *books):  # On remplace quantity par *books == BookShelf contient plusieurs livres (étagère)
-        
+    # On remplace quantity par *books == BookShelf contient plusieurs livres (étagère)
+    def __init__(self, *books):
+
         self.books = books
 
     def __str__(self):
-        return f"BookShielf with : {len(self.books)} Books."  # BookShielf contient plusieurs livres (étagère)
+        # BookShielf contient plusieurs livres (étagère)
+        return f"BookShielf with : {len(self.books)} Books."
 
 #  shelf = BookShelf(50) ==> On a pas besoin d'instancier
 
 #  print(shelf) pas besoin d'afficher
 
-class Book:  # On a pas besoin d'hériter de la classe BookShelf   
 
-    def __init__(self , name , description):  # On a a pas besoin de Quantity on la supprime
-        # super(Book, self).__init__(quantity) ===> On supprime super() avec quantity 
+class Book:  # On a pas besoin d'hériter de la classe BookShelf
+
+    def __init__(self, name, description):  # On a a pas besoin de Quantity on la supprime
+        # super(Book, self).__init__(quantity) ===> On supprime super() avec quantity
         self.name = name
         self.description = description
 
     def __str__(self):
         return f"BookName : {self.name} Book description : {self.description!r}"
 
-book = Book("C#" , "Head First C#")
-book2 = Book("Java" , "introduction to Java")
+
+book = Book("C#", "Head First C#")
+book2 = Book("Java", "introduction to Java")
 print(book)
 print(book2)
 
-shelf = BookShelf(book , book2)  # shelf (étagère) contient 2 livres
+shelf = BookShelf(book, book2)  # shelf (étagère) contient 2 livres
 print(shelf)  # affiche: "BookShielf with : 2 Books." ====> {len(self.books)}
 
 # ####################### TYPE HINTING ################################################################
-from typing import List 
 
 # Sans Type Hinting
+
+
 def list_avg(sequence):
     return sum(sequence) / len(sequence)
 
-result = list_avg([1 , 2 , 3])
+
+result = list_avg([1, 2, 3])
 print(f"la moyenne de cette liste est : {result}")
 
 # Avec Type Hinting
-from typing import List
-def list_avg(sequence:List) -> float:
+
+
+def list_avg(sequence: List) -> float:
 
     return sum(sequence) / len(sequence)
-    
-result = list_avg((1,2,3))
+
+
+result = list_avg((1, 2, 3))
 print(f"la moyenne de cette liste est : {result}")
 
- ################## IMPORTING IN PYTHON ###################################################
+################## IMPORTING IN PYTHON ###################################################
 
-from mymodule import divide
-import sys
-import mymodule
 
 # print(sys.modules)
 # print(sys.path)  # affiche:
-                   # C:\Users\s_kha\OneDrive\EXERCICES TECLADO PYTHON\TecLadot-Exos>
+# C:\Users\s_kha\OneDrive\EXERCICES TECLADO PYTHON\TecLadot-Exos>
 
 # On importe la fonction qui se trouve dans le module mymodule.py
 print(f"la division est égale: {divide(12 , 6)}")
@@ -752,38 +773,46 @@ print(__name__)
 
 ################### FIRST CLASS FUNCTION #############################################################
 
-def divide(dividend , divisor): 
+
+def divide(dividend, divisor):
     if divisor == 0:
         raise ZeroDivisionError("Divisor cannot be a 0 !!")
     return dividend / divisor
 
-def calculate(*values , operator):
+
+def calculate(*values, operator):
     return operator(*values)
 
-def addition(number1 , number2):
+
+def addition(number1, number2):
     return number1 + number2
 
+
 # Appel de la fonction calculate dans une variable result
-result = calculate(20 , 4 , operator = divide)
-print(f"result division = {result:.2f}")  # affiche : 5.00 deux virgules à la fin 
+result = calculate(20, 4, operator=divide)
+# affiche : 5.00 deux virgules à la fin
+print(f"result division = {result:.2f}")
 
 # Appel de la fonction addition
-result = calculate(20 , 4 , operator = addition)
-print(f"result addition = {result:.2f}") # affiche : 24.0
+result = calculate(20, 4, operator=addition)
+print(f"result addition = {result:.2f}")  # affiche : 24.0
 
 # ######## AUTRE EXEMPLE DE FIRST CLASS FUNCTION #######################
 
-def search(sequence , expected , finder):
+
+def search(sequence, expected, finder):
     for elem in sequence:
         if finder(elem) == expected:
             return elem
     raise RuntimeError(f"Could not find an element with {expected}")
 
+
 friends = [
-    {"name": "John", "age" : 16},
-    {"name": "Salih", "age" : 56},
-    {"name": "Anne sophie" , "age" : 24},   
+    {"name": "John", "age": 16},
+    {"name": "Salih", "age": 56},
+    {"name": "Anne sophie", "age": 24},
 ]
+
 
 def get_friend_name(friend):
     return friend["name"]
@@ -793,9 +822,78 @@ def get_friend_name(friend):
 # et le programme sort
 # print(search(friends, "Bob smith" , get_friend_name))
 
+
 # Si l'elm existe dans friends on aura :
 # {'name': 'Salih', 'age': 56}
-print(search(friends, "Salih" , get_friend_name))
+print(search(friends, "Salih", get_friend_name))
+
+################ SIMPLE DECORATORS #########################################################
+
+user = {"username": "José", "access_level": "guest"}
 
 
+def get_admin_password():
+    return "1234"
 
+
+def secure_get_admin():
+    if user["access_level"] == "admin":  # return None
+        return "1234"
+
+
+print(secure_get_admin())
+
+
+def make_secure(func):
+    def secure_function():
+        if user["access_level"] == "admin":
+            return func()
+        else:
+            return f"no admin permission for {user['username']}."
+    return secure_function
+
+
+# On sécurise la valeur de retour de la fonction get_admin_password()
+get_admin_password = make_secure(get_admin_password)
+print(get_admin_password())
+
+############### On utilise le signe @ Decorateur #################################################################
+import functools  # Modeule pour sécuriser les fonctions
+
+user = {"username": "José", "access_level": "guest"}
+
+def make_secure(func):
+    @functools.wraps(func)  # on sécurise sans message d'erreurs
+    def secure_function():
+        if user["access_level"] == "admin":
+            return func()
+        else:
+            return f"no admin permission for {user['username']}."
+    return secure_function
+
+@make_secure
+def get_admin_password():
+    return "1234"
+    
+# on supprime get_admin_password = make_secure(get_admin_password)
+print(get_admin_password())
+
+################ DECORATING FUNCTIONS WITH PARAMETERS ###################
+
+def make_secure(func):
+    @functools.wraps(func)  # on sécurise sans message d'erreurs
+    def secure_function(*args , **kwargs):  # On peut passer n'importe quel argument
+        if user["access_level"] == "admin":
+            return func(*args, **kwargs)
+        else:
+            return f"no admin permission for {user['username']}."
+    return secure_function
+
+@make_secure
+def get_password(panel):
+    if panel == "admin":
+        return "1234"
+    elif panel == "billing":
+        return "super_secure_password"
+    
+print(get_password("billing"))
