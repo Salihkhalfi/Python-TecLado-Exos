@@ -897,3 +897,88 @@ def get_password(panel):
         return "super_secure_password"
     
 print(get_password("billing"))
+
+################## PYTHON MUTABILITY ################################
+
+a = []
+b = a
+print(f"type(a) = {type(a)} , type(b) = {type(b)}")
+print(f"id(a) = {id(a)} , id(b) = {id(b)},")
+
+a= []
+b= []
+a.append(35)
+
+print(f"id(a) = {id(a)} , id(b) = {id(b)}")
+
+# Les Tuples ne sont pas mutables
+a = ()
+b = ()
+
+# a.append(35)  # la méthode append(), n'éxiste pas pour les tuples
+# On aura: AttributeError: 'tuple' object has no attribute 'append'
+# Les Tuples ne sont pas mutables
+print(f"id(a) = {id(a)} , id(b) = {id(b)}")
+
+a = a + (15,) # est possible pas d'erreur
+print(f"a = {a}")  # Affiche : a = (15,)
+
+a = 8768
+b = 8760  # même valeur que a
+
+# quand le contenu des variables est différent, lid des variables n'est pas par
+# le même
+print(f"id(a) = {id(a)} , id(b) = {id(b)}")  # affiche : id(a) = 2750657648496 , id(b) = 2750657649136
+
+a = "Hello"
+b = "World"
+print(f"id(a) = {id(a)} , id(b) = {id(b)}")  # affiche : id(a) = 2154900273072 , id(b) = 2154900273136
+
+a += " World"
+print(f"a += 'World' = {a}") # affiche : "Hello World"
+print(f"id(a) = {id(a)} , id(b) = {id(b)}")  # affiche : id(a) = 1601395947248 , id(b) = 1601391146992
+
+a = "Hello"
+a = "World"
+print(f"la chaine a = {a}") # affiche : la chaine a = World
+
+# ###################### MUTABLE DEFAULT PARAMETERS ####################
+
+from typing import List, Optional
+
+class Student:
+    #def __init__(self, name:str , grades:List[int]=[]): # this is bad
+    def __init__(self, name:str , grades:Optional[List[int]]=None): # this is Good
+
+        self.name = name
+        self.grades = grades or []
+
+    def take_exam(self , result:int):
+        self.grades.append(result)
+
+bob = Student("Bob")
+bob.take_exam(90)
+
+ralf = Student("Ralf")
+ralf.take_exam(75)
+
+print(f"les notes de {ralf.name} sont : {ralf.grades}")
+print(f"les notes de {bob.name} sont : {bob.grades}")
+
+bob.take_exam(30)
+print(f"les notes de {bob.name} sont : {bob.grades}")
+
+# on aura des affichages erronnés à cause de la méthode __init__()
+# déclarée avec : grades:List[int]=[]
+# on aura comme affichage:
+# les notes de Ralf sont : [90, 75]
+# les notes de Bob sont : [90, 75]
+# les notes de Bob sont : [90, 75, 30]
+# bob n'a pas les notes: [90, 75, 30] et
+# Ralf n'a pas les notes : [90, 75]
+# On corrige __init__(self, name:str, grades:Optional[List[int]] = None)
+##############
+# Après correction on aura:
+# Les notes de Ralf sont : [75]
+# Les notes de Bob sont : [90]
+# Les notes de Bob sont : [90, 30]
