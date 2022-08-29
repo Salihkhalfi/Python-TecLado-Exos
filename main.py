@@ -126,15 +126,10 @@
 # day_of_week = input("quel jour sommes-nous cette semaine ? : ").lower()
 
 # if day_of_week == "vendredi":
-#     print(f"nous sommes le Vendredi")
+#     print("nous sommes le Vendredi")
 # else:
 #     print(f"Erreur !, nous sommes pas le {day_of_week}")
 
-# print("Good Bye !!!!!!!!!!!!")
-# print("Good Bye !!!!!!!!!!!!")
-# print("Good Bye !!!!!!!!!!!!")
-# print("Good Bye !!!!!!!!!!!!")
-# print("Good Bye !!!!!!!!!!!!")
 # print("Good Bye !!!!!!!!!!!!")
 
 # # ################ LE IN ###############################################################
